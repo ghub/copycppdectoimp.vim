@@ -471,6 +471,9 @@ function s:GrabFromHeaderPasteInSource(...) "{{{
 		" wipe out a pure virtual thingie-ma-bob. (technical term? (= )
 		execute ':s/)\s\{-}=\s\{-}0\s\{-};/);/e'
 
+		" Remove 'explicit'
+		execute ':s/\<explicit\>\s*//e'
+
 		" Handle default params, if any.
 		if howtoshowDefaultParams == 1
 			" Remove the default param assignments.
