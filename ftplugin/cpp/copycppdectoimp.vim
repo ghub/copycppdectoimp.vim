@@ -24,12 +24,6 @@ function s:GrabFromHeaderPasteInSource(...)
         endif
     endif
 
-    if exists('g:ghph_ShowVirtual')
-        let howtoshowVirtual = g:ghph_ShowVirtual
-    else
-        let howtoshowVirtual = 0
-    endif
-
     if exists('g:ghph_ShowStatic')
         let howtoshowStatic = g:ghph_ShowStatic
     else
@@ -138,11 +132,7 @@ function s:GrabFromHeaderPasteInSource(...)
         execute ':normal! =='
         execute "set equalprg=".Was_EqualPrg
 
-        if howtoshowVirtual == 1
-            execute ':s/\<virtual\>/\/\*&\*\//e'
-        else
-            execute ':s/\<virtual\>\s*//e'
-        endif
+        execute ':s/\<virtual\>\s*//e'
 
         if howtoshowStatic == 1
             execute ':s/\<static\>/\/\*&\*\//e'
