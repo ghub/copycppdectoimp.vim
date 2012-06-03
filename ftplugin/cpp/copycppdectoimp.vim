@@ -182,24 +182,4 @@ function s:GrabFromHeaderPasteInSource(...)
 endfunc
 endif
 
-if !exists('g:ghph_useGHPH') && !exists('g:ghph_useGHandPH')
-    let g:ghph_useGHPH = 1
-endif
-
-if !exists(":GHPH") && exists('g:ghph_useGHPH')
-    if g:ghph_useGHPH == 1
 :command -buffer -nargs=? GHPH call <SID>GrabFromHeaderPasteInSource(<f-args>)
-    endif
-endif
-
-if !exists(":GH") && exists('g:ghph_useGHandPH')
-    if g:ghph_useGHandPH == 1
-:command -buffer -nargs=0 GH call <SID>GrabFromHeaderPasteInSource('g')
-    endif
-endif
-
-if !exists(":PH") && exists('g:ghph_useGHandPH')
-    if g:ghph_useGHandPH == 1
-:command -buffer -nargs=0 PH call <SID>GrabFromHeaderPasteInSource('p')
-    endif
-endif
