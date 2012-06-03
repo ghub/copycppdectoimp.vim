@@ -24,12 +24,6 @@ function s:GrabFromHeaderPasteInSource(...)
         endif
     endif
 
-    if exists('g:ghph_ShowDefaultParams')
-        let howtoshowDefaultParams = g:ghph_ShowDefaultParams
-    else
-        let howtoshowDefaultParams = 3
-    endif
-
     if l:needToPutHeader == 0
 
         let SaveL = line(".")
@@ -131,15 +125,7 @@ function s:GrabFromHeaderPasteInSource(...)
 
         execute ':s/)\s\{-}=\s\{-}0\s\{-};/);/e'
         execute ':s/\<explicit\>\s*//e'
-
-        if howtoshowDefaultParams == 1
-            execute ':s/\s\{-}=\s\{-}[^,)]\{1,}//ge'
-        else
-            execute ':s/\s\{-}\(=\s\{-}[^,)]\{1,}\)/\/\*\1\*\//ge'
-            if howtoshowDefaultParams == 3
-                execute ':s/\s*=\s*//ge'
-            endif
-        endif
+        execute ':s/\s\{-}=\s\{-}[^,)]\{1,}//ge'
 
         let @/=@n
         let @n=Was_Reg_n
