@@ -5,26 +5,7 @@ let b:loaded_copycppdectoimp = 1
 
 if !exists("*s:GrabFromHeaderPasteInSource(...)")
 function s:GrabFromHeaderPasteInSource(...)
-    let l:needToPutHeader = 0
-
-    if match(expand("%:e"), '\c\<h\>\|\<hpp\>\|\<hh\>\|\<hxx\>') > -1
-        let l:needToPutHeader = 0
-    else
-        let l:needToPutHeader = 1
-    endif
-
-    if a:0 == 1
-        if a:1 == '0' || a:1 ==? "h" || a:1 ==? "g"
-            let l:needToPutHeader = 0
-        elseif a:1 == '1' || a:1 ==? "c" || a:1 ==? "p"
-            let l:needToPutHeader = 1
-        else
-            echo "GHPH: ERROR: Unknown option"
-            return
-        endif
-    endif
-
-    if l:needToPutHeader == 0
+    if expand("%:e") =~? "h.*"
 
         let SaveL = line(".")
         let SaveC = virtcol(".")
