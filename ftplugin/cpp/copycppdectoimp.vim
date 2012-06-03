@@ -128,4 +128,4 @@ function s:GrabFromHeaderPasteInSource()
 endfunc
 endif
 
-:command -buffer -nargs=? GHPH call <SID>GrabFromHeaderPasteInSource()
+:command -buffer GHPH call <SID>GrabFromHeaderPasteInSource()
