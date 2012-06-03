@@ -3,8 +3,8 @@ if exists("b:loaded_copycppdectoimp")
 endif
 let b:loaded_copycppdectoimp = 1
 
-if !exists("*s:GrabFromHeaderPasteInSource(...)")
-function s:GrabFromHeaderPasteInSource(...)
+if !exists("*s:GrabFromHeaderPasteInSource()")
+function s:GrabFromHeaderPasteInSource()
     if expand("%:e") =~? "h.*"
 
         let SaveL = line(".")
@@ -128,4 +128,4 @@ function s:GrabFromHeaderPasteInSource(...)
 endfunc
 endif
 
-:command -buffer -nargs=? GHPH call <SID>GrabFromHeaderPasteInSource(<f-args>)
+:command -buffer -nargs=? GHPH call <SID>GrabFromHeaderPasteInSource()
