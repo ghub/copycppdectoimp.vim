@@ -14,12 +14,17 @@ function s:GrabFromHeaderPasteInSource()
         let SaveT = line('.')
         execute ":normal! ".SaveL."G"
 
+        let StartLine = 0
         if stridx(getline('.'), '(') > -1
             execute "normal! 0f("
+        else
+            execute "/("
+            execute "normal! 0f("
+            let StartLine = -1
         endif
 
-        let EndLine = searchpair('(','',').\{-};', 'rW')
-        let StartLine = searchpair('(','',')', 'bW')
+        let EndLine = searchpair('(', '', ').\{-};', 'rW')
+        let StartLine += searchpair('(', '', ')', 'bW')
 
         if EndLine == 0 || StartLine == 0
             echo "GHPH: ERROR: Sorry this does not look like a function decloration, missing '(' and or ')' with trailing ';'"
